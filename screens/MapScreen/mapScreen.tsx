@@ -3,13 +3,11 @@ import { StyledMapView, Container } from "./mapScreen.style";
 import useMapScreen from "./useMapScreen";
 import { RoundBtn } from "@/components/roundBtn";
 import { MapSearchBar } from "@/components/mapSearchBar";
-import { View } from "react-native";
+import DestinationModal from "@/components/DestinationModal/DestinationModal";
 
-const MapScreen = ({ showsUserLocation }: { showsUserLocation: any }) => {
+const MapScreen = () => {
   const { models, operations } = useMapScreen();
-  const handlePress = () => {
-    console.log("pressed");
-  };
+
   return (
     <Container>
       <StyledMapView
@@ -21,7 +19,11 @@ const MapScreen = ({ showsUserLocation }: { showsUserLocation: any }) => {
       />
 
       <RoundBtn icon="ios-menu-outline" />
-      <MapSearchBar onPress={handlePress} />
+      <MapSearchBar onPress={operations.handleMapSearchBarPress} />
+      <DestinationModal
+        visible={models.modalVisible}
+        closeModal={operations.closeDestinationModal}
+      />
     </Container>
   );
 };

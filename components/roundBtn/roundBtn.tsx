@@ -9,10 +9,10 @@ interface RoundBtnProp {
   onPress?: () => void;
 }
 
-const RoundBtn = ({ icon }: RoundBtnProp) => {
+const RoundBtn = ({ icon, onPress }: RoundBtnProp) => {
   const inset = useSafeAreaInsets();
   return (
-    <StyledPressable inset={inset}>
+    <StyledPressable inset={inset} onPress={onPress}>
       <Ionicons name={icon} size={scale(26)} color="black" />
     </StyledPressable>
   );
