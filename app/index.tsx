@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/constants/themeProvider";
 const index = () => {
   return (
     <ThemeProvider>
-      <MapScreen showsUserLocation />
+      <MapScreen />
       <LocationPermissionService />
     </ThemeProvider>
   );

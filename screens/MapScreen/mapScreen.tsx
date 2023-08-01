@@ -3,6 +3,7 @@ import { StyledMapView, Container } from "./mapScreen.style";
 import useMapScreen from "./useMapScreen";
 import { RoundBtn } from "@/components/roundBtn";
 import { MapSearchBar } from "@/components/mapSearchBar";
+import { View } from "react-native";
 import DestinationModal from "@/components/DestinationModal/DestinationModal";
 
 const MapScreen = () => {
