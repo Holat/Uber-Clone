@@ -23,3 +23,26 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+// [
+//   "expo-location",
+//   {
+//     "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+//   }
+// ]
+
+/**
+ * ,
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ]
+ */
+
+/**
+ *  "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location to provide awesome features."
+      }
+
+    "permission": ["LOCATION", "BACKGROUND_LOCATION"],
+
+ */
