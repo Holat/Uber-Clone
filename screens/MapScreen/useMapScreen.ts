@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import MapView, { UserLocationChangeEvent } from "react-native-maps";
 
 const LATITUDE_DELTA = 0.0022;

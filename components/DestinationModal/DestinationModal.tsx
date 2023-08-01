@@ -1,4 +1,4 @@
-import { Modal, Text } from "react-native";
+import { Modal } from "react-native";
 import React from "react";
 import { Container } from "./Destination.styles";
 import { RoundBtn } from "../roundBtn";
@@ -13,7 +13,7 @@ const DestinationModal = ({ visible, closeModal }: DestinationModalProp) => {
     closeModal();
   };
   return (
-    <Modal visible={visible} animationType="fade" statusBarTranslucent={true}>
+    <Modal visible={visible} animationType={"fade"} statusBarTranslucent={true}>
       <Container>
         <RoundBtn
           icon={"ios-arrow-back-outline"}
