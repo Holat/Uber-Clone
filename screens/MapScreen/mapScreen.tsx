@@ -1,18 +1,28 @@
-import { View, Text } from "react-native";
 import React from "react";
-import { StyledMapView } from "./mapScreen.style";
+import { StyledMapView, Container } from "./mapScreen.style";
 import useMapScreen from "./useMapScreen";
+import { RoundBtn } from "@/components/roundBtn";
+import { MapSearchBar } from "@/components/mapSearchBar";
+import { View } from "react-native";
 
 const MapScreen = ({ showsUserLocation }: { showsUserLocation: any }) => {
   const { models, operations } = useMapScreen();
+  const handlePress = () => {
+    console.log("pressed");
+  };
   return (
-    <StyledMapView
-      ref={models.mapRef}
-      showsUserLocation
-      onUserLocationChange={operations.handleUserLocationChange}
-      showsMyLocationButton={false}
-      showsCompass={false}
-    />
+    <Container>
+      <StyledMapView
+        ref={models.mapRef}
+        showsUserLocation
+        onUserLocationChange={operations.handleUserLocationChange}
+        showsMyLocationButton={false}
+        showsCompass={false}
+      />
+
+      <RoundBtn icon="ios-menu-outline" />
+      <MapSearchBar onPress={handlePress} />
+    </Container>
   );
 };
 

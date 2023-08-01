@@ -1,19 +1,22 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+const pallete = {
+  white: "#fff",
+  black: "#000",
+  grey: "#CCCCCC",
+};
 
-export default {
-  light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
+export const colors = {
+  common: {
+    background: pallete.white,
+    shadowDef: pallete.black,
   },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
+  components: {
+    mapSearchBar: {
+      squareClr: pallete.black,
+    },
+  },
+  typography: {
+    body: pallete.grey,
   },
 };
+
+export type Colors = typeof colors;

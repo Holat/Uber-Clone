@@ -1,1 +1,3 @@
-export * from "./mapScreen";
+import MapScreen from "./mapScreen";
+
+export { MapScreen };
