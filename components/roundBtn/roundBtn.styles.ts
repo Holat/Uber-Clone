@@ -14,11 +14,12 @@ export const StyledPressable = styled.Pressable<StyledPressableProps>(
       borderRadius: scale(45 / 2),
       backgroundColor: "#fff",
       position: "absolute",
-      top: inset.top + scale(12),
+      top: inset.top + scale(10),
       left: scale(10),
       ...theme.shadows.primary(theme),
       alignItems: "center",
       justifyContent: "center",
+      zIndex: 100,
     };
   }
 );

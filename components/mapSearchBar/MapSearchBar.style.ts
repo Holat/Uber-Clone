@@ -21,19 +21,16 @@ export const StyledPressable = styled.Pressable(({ theme }) => {
     backgroundColor: theme.colors.common.background,
     ...theme.shadows.primary(theme),
     alignItems: "center",
-    padding: scale(15),
+    padding: scale(12),
     minHeight: scale(30),
     width: Dimensions.get("window").width - scale(90),
-    borderRadius: scale(45 / 2),
+    borderRadius: scale(10),
     flexDirection: "row",
   };
 });
 
 export const Square = styled.View(({ theme }) => {
   return {
-    // width: scale(7),
-    // height: scale(7),
-    // backgroundColor: theme.colors.components.mapSearchBar.squareClr,
     alignItems: "center",
     justifyContent: "center",
     marginRight: scale(20),
