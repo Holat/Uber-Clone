@@ -5,7 +5,8 @@ interface DestinationInputProps {
   disabled?: boolean;
   placeholder?: string;
   autofocus?: boolean;
-  onChangeText?: () => void;
+  onChangeText?: (value: string) => void;
+  value?: string;
 }
 
 const DestinationInput = ({
@@ -13,6 +14,7 @@ const DestinationInput = ({
   placeholder,
   autofocus,
   onChangeText,
+  value,
 }: DestinationInputProps) => {
   const sharedProps = { placeholder };
   return disabled ? (
@@ -23,6 +25,7 @@ const DestinationInput = ({
       autoFocus={autofocus}
       {...sharedProps}
       selectionColor={"black"}
+      value={value}
     />
   );
 };

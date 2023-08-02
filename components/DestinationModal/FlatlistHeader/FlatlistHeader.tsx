@@ -16,7 +16,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { scale } from "react-native-size-matters";
 import Divider from "@/components/Divider/Divider";
 
-const FlatlistHeader = () => {
+interface FlatlistHeaderProp {
+  dest: string;
+  onDestTxtChange: (value: string) => void;
+}
+
+const FlatlistHeader = ({ dest, onDestTxtChange }: FlatlistHeaderProp) => {
   const inset = useSafeAreaInsets();
   return (
     <>
@@ -32,7 +37,7 @@ const FlatlistHeader = () => {
           <InputContainer>
             <DestinationInput disabled placeholder="Current location" />
             <Spacer height={scale(10)} />
-            <DestinationInput />
+            <DestinationInput value={dest} onChangeText={onDestTxtChange} />
           </InputContainer>
         </HorizonatalCont>
       </Container>

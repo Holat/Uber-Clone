@@ -3,6 +3,7 @@ import React from "react";
 import { RoundBtn } from "../roundBtn";
 import { StyledFlatlist } from "./Destination.styles";
 import FlatlistHeader from "./FlatlistHeader/FlatlistHeader";
+import { useDestinationModal } from "./useDestinationModal";
 
 interface DestinationModalProp {
   visible: boolean;
@@ -10,6 +11,8 @@ interface DestinationModalProp {
 }
 
 const DestinationModal = ({ visible, closeModal }: DestinationModalProp) => {
+  const { modals, operation } = useDestinationModal();
+
   const handleRoundBtnPress = () => {
     closeModal();
   };
@@ -30,7 +33,12 @@ const DestinationModal = ({ visible, closeModal }: DestinationModalProp) => {
       <StyledFlatlist
         data={[]}
         renderItem={renderFlatlistItem}
-        ListHeaderComponent={FlatlistHeader}
+        ListHeaderComponent={
+          <FlatlistHeader
+            dest={modals.destinationInputValue}
+            onDestTxtChange={operation.destinationInputValueChange}
+          />
+        }
       />
     </Modal>
   );
