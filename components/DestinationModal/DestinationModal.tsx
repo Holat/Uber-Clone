@@ -10,14 +10,20 @@ import PlaceItem from "../Place/PlaceItem";
 import { TxtSearchItem } from "@/modal/places/types/TxtSearchItems";
 import { Spacer } from "../common/spacer/Spacer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LatLng } from "react-native-maps";
 
 interface DestinationModalProp {
   visible: boolean;
   closeModal: () => void;
+  onPress: (cords: LatLng) => () => void;
 }
 const ItemSeparatorComponent = () => <Spacer height={scale(17)} />;
 
-const DestinationModal = ({ visible, closeModal }: DestinationModalProp) => {
+const DestinationModal = ({
+  visible,
+  closeModal,
+  onPress,
+}: DestinationModalProp) => {
   const { modals, operation } = useDestinationModal();
   const insets = useSafeAreaInsets();
   const styles = useStyles(insets);
@@ -29,10 +35,14 @@ const DestinationModal = ({ visible, closeModal }: DestinationModalProp) => {
   const renderFlatlistItem = ({ item }: { item: TxtSearchItem }) => {
     return (
       <PlaceItem
+        key={item.place_id}
         name={item.name}
         iconUrl={item.icon}
         address={item.formatted_address}
-        onPress={() => console.log("pressed")}
+        onPress={onPress({
+          latitude: item.geometry.location.lat,
+          longitude: item.geometry.location.lng,
+        })}
       />
     );
   };
@@ -52,6 +62,7 @@ const DestinationModal = ({ visible, closeModal }: DestinationModalProp) => {
         ItemSeparatorComponent={ItemSeparatorComponent}
         contentContainerStyle={styles.flatlistContainer}
         stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <FlatlistHeader
             dest={modals.destinationInputValue}

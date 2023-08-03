@@ -41,6 +41,11 @@ export const colors = {
       iconTint: pallete.white,
     },
   },
+  screens: {
+    mapScrn: {
+      directionStroke: pallete.blue,
+    },
+  },
 };
 
 export type Colors = typeof colors;

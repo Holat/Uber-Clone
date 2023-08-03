@@ -37,7 +37,11 @@ const FlatlistHeader = ({ dest, onDestTxtChange }: FlatlistHeaderProp) => {
           <InputContainer>
             <DestinationInput disabled placeholder="Current location" />
             <Spacer height={scale(10)} />
-            <DestinationInput value={dest} onChangeText={onDestTxtChange} />
+            <DestinationInput
+              value={dest}
+              onChangeText={onDestTxtChange}
+              autofocus={true}
+            />
           </InputContainer>
         </HorizonatalCont>
         <Spacer height={scale(15)} />
