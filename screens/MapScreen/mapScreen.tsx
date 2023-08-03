@@ -40,8 +40,16 @@ const MapScreen = () => {
           onReady={operations.handleOnMapDirectionReady}
         />
       </StyledMapView>
-      <RoundBtn icon="ios-menu-outline" />
-      <MapSearchBar onPress={operations.handleMapSearchBarPress} />
+
+      <RoundBtn
+        icon={
+          models.isRouteVisible ? "ios-arrow-back-outline" : "ios-menu-outline"
+        }
+        onPress={operations.handleRoundBtnPress}
+      />
+      {models.isRouteVisible ? null : (
+        <MapSearchBar onPress={operations.handleMapSearchBarPress} />
+      )}
       <DestinationModal
         visible={models.modalVisible}
         closeModal={operations.closeDestinationModal}

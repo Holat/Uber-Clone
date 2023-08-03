@@ -1,10 +1,7 @@
 import { useUserLocationStateContext } from "@/context/userLocationStateContext";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import MapView, { LatLng, UserLocationChangeEvent } from "react-native-maps";
-import {
-  MapDirectionsResponse,
-  MapViewDirectionsTimePrecision,
-} from "react-native-maps-directions";
+import { MapDirectionsResponse } from "react-native-maps-directions";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { scale } from "react-native-size-matters";
 
@@ -18,6 +15,7 @@ export default function useMapScreen() {
   const [mapMarkers, setMapMarkers] = useState<LatLng[]>([]);
   const [mapDirection, setMapDirection] = useState<MapDirectionsResponse>();
   const inset = useSafeAreaInsets();
+  const isRouteVisible = mapMarkers.length === 2;
 
   useEffect(() => {
     if (mapDirection?.coordinates) {
@@ -30,9 +28,9 @@ export default function useMapScreen() {
         },
       });
     }
-  }, []);
+  });
 
-  useEffect(() => {
+  const centerToUserLocation = useCallback(() => {
     if (userLocation) {
       mapRef.current?.animateToRegion({
         longitude: userLocation.cords.longitude,
@@ -43,10 +41,14 @@ export default function useMapScreen() {
     }
   }, [userLocation]);
 
+  useEffect(() => {
+    centerToUserLocation();
+  }, [centerToUserLocation]);
+
   const handleUserLocationChange = ({
     nativeEvent: { coordinate },
   }: UserLocationChangeEvent) => {
-    if (coordinate) {
+    if (coordinate && !modalVisible && !isRouteVisible) {
       setUserLocation({
         cords: {
           latitude: coordinate.latitude,
@@ -77,11 +79,19 @@ export default function useMapScreen() {
     };
   };
 
+  const handleRoundBtnPress = () => {
+    if (isRouteVisible) {
+      setMapMarkers([]);
+      centerToUserLocation();
+    }
+  };
+
   return {
     models: {
       mapRef,
       modalVisible,
       mapMarkers,
+      isRouteVisible,
     },
     operations: {
       handleUserLocationChange,
@@ -89,6 +99,7 @@ export default function useMapScreen() {
       closeDestinationModal,
       handlePlaceItemPress,
       handleOnMapDirectionReady,
+      handleRoundBtnPress,
     },
   };
 }

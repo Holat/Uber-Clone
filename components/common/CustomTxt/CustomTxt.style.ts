@@ -12,7 +12,7 @@ export const TitleTxt = styled.Text(({ theme }) => {
   return {
     fontSize: scale(15),
     color: theme.colors.typography.common,
-    fontWeight: 700,
+    fontWeight: "700",
   };
 });
 
