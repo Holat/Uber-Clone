@@ -1,3 +1,4 @@
+import { useUserLocationStateContext } from "@/context/userLocationStateContext";
 import { useState, useRef, useEffect } from "react";
 import MapView, { UserLocationChangeEvent } from "react-native-maps";
 
@@ -6,25 +7,31 @@ const LONGITUDE_DELTA = 0.005;
 
 export default function useMapScreen() {
   const mapRef = useRef<MapView>(null);
-  const [UserLocation, setUserLocation] =
-    useState<UserLocationChangeEvent["nativeEvent"]["coordinate"]>();
+  const { userLocation, setUserLocation } = useUserLocationStateContext();
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    if (UserLocation) {
+    if (userLocation) {
       mapRef.current?.animateToRegion({
-        longitude: UserLocation.longitude,
-        latitude: UserLocation.latitude,
+        longitude: userLocation.cords.longitude,
+        latitude: userLocation.cords.latitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       });
     }
-  }, [UserLocation]);
+  }, [userLocation]);
 
   const handleUserLocationChange = ({
     nativeEvent: { coordinate },
   }: UserLocationChangeEvent) => {
-    setUserLocation(coordinate);
+    if (coordinate) {
+      setUserLocation({
+        cords: {
+          latitude: coordinate.latitude,
+          longitude: coordinate.longitude,
+        },
+      });
+    }
   };
 
   const closeDestinationModal = () => {
