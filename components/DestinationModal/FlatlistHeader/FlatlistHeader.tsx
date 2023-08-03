@@ -40,9 +40,10 @@ const FlatlistHeader = ({ dest, onDestTxtChange }: FlatlistHeaderProp) => {
             <DestinationInput value={dest} onChangeText={onDestTxtChange} />
           </InputContainer>
         </HorizonatalCont>
+        <Spacer height={scale(15)} />
+        <Divider />
       </Container>
-      <Spacer height={scale(10)} />
-      <Divider />
+      <Spacer height={scale(15)} />
     </>
   );
 };

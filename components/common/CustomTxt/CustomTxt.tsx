@@ -1,14 +1,18 @@
 import React from "react";
-import { BodyTxt } from "./CustomTxt.style";
+import { BodyTxt, CaptionTxt, TitleTxt } from "./CustomTxt.style";
 
 interface CustomTxtProp {
-  variant: "body";
+  variant: "body" | "title" | "caption";
   children: string;
 }
 const getComponent = (variant: CustomTxtProp["variant"]) => {
   switch (variant) {
     case "body":
       return BodyTxt;
+    case "title":
+      return TitleTxt;
+    case "caption":
+      return CaptionTxt;
     default:
       return BodyTxt;
   }

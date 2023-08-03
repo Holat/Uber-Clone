@@ -1,5 +1,7 @@
 import styled from "@emotion/native";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, StyleSheet } from "react-native";
+import { EdgeInsets } from "react-native-safe-area-context";
+import { scale } from "react-native-size-matters";
 
 export const StyledFlatlist = styled.FlatList(({ theme }) => {
   return {
@@ -7,4 +9,9 @@ export const StyledFlatlist = styled.FlatList(({ theme }) => {
   };
 }) as unknown as typeof FlatList;
 
-// 1: 24: 03
+export const useStyles = (insets: EdgeInsets) =>
+  StyleSheet.create({
+    flatlistContainer: {
+      paddingBottom: insets.bottom || scale(10),
+    },
+  });

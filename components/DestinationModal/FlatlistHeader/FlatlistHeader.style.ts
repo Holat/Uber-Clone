@@ -4,8 +4,8 @@ import { scale } from "react-native-size-matters";
 
 export const Container = styled.View(({ theme }) => {
   return {
-    width: Dimensions.get("window").width - scale(70),
-    alignSelf: "flex-end",
+    width: "100%",
+    backgroundColor: theme.colors.common.background,
   };
 });
 
@@ -26,7 +26,9 @@ export const DecoratorCont = styled.View(({ theme }) => {
 
 export const HorizonatalCont = styled.View(({ theme }) => {
   return {
+    width: Dimensions.get("window").width - scale(80),
     flexDirection: "row",
+    alignSelf: "flex-end",
     marginRight: scale(12),
   };
 });
