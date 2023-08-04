@@ -14,12 +14,17 @@ interface PlaceItemProps {
   name: string;
   address: string;
   iconUrl: string;
-  onPress: () => void;
+  onPlaceItemPress: () => void;
 }
 
-const PlaceItem = ({ onPress, iconUrl, name, address }: PlaceItemProps) => {
+const PlaceItem = ({
+  onPlaceItemPress,
+  iconUrl,
+  name,
+  address,
+}: PlaceItemProps) => {
   return (
-    <Container onPress={onPress}>
+    <Container onPress={onPlaceItemPress}>
       <IconContainer>
         <IconImage source={{ uri: iconUrl }} />
       </IconContainer>

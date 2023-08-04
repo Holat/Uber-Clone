@@ -15,22 +15,25 @@ import { LatLng } from "react-native-maps";
 interface DestinationModalProp {
   visible: boolean;
   closeModal: () => void;
-  onPress: (cords: LatLng) => () => void;
+  onPlaceItemPress: (cords: LatLng) => void;
 }
 const ItemSeparatorComponent = () => <Spacer height={scale(17)} />;
 
 const DestinationModal = ({
   visible,
   closeModal,
-  onPress,
+  onPlaceItemPress,
 }: DestinationModalProp) => {
-  const { modals, operation } = useDestinationModal();
+  const { modals, operation } = useDestinationModal({
+    onPlaceItemPress,
+    closeModal,
+  });
   const insets = useSafeAreaInsets();
   const styles = useStyles(insets);
 
-  const handleRoundBtnPress = () => {
-    closeModal();
-  };
+  // const handleRoundBtnPress = () => {
+  //   closeModal();
+  // };
 
   const renderFlatlistItem = ({ item }: { item: TxtSearchItem }) => {
     return (
@@ -39,10 +42,7 @@ const DestinationModal = ({
         name={item.name}
         iconUrl={item.icon}
         address={item.formatted_address}
-        onPress={onPress({
-          latitude: item.geometry.location.lat,
-          longitude: item.geometry.location.lng,
-        })}
+        onPlaceItemPress={operation.handlePlaceItemPress(item)}
       />
     );
   };
@@ -55,7 +55,10 @@ const DestinationModal = ({
       animationType={"fade"}
       statusBarTranslucent={true}
     >
-      <RoundBtn icon={"ios-arrow-back-outline"} onPress={handleRoundBtnPress} />
+      <RoundBtn
+        icon={"ios-arrow-back-outline"}
+        onPress={operation.handleRoundBtnPress}
+      />
       <StyledFlatlist
         data={modals.txtSearchQueryRespData}
         renderItem={renderFlatlistItem}
