@@ -10,6 +10,7 @@ import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_API_KEY } from "@env";
 import { useTheme } from "@emotion/react";
 import { scale } from "react-native-size-matters";
+import ChooseRideBottomSheet from "@/components/chooseRideBS/ChooseRideBottomSheet";
 
 const MapScreen = () => {
   const { models, operations } = useMapScreen();
@@ -55,6 +56,7 @@ const MapScreen = () => {
         closeModal={operations.closeDestinationModal}
         onPlaceItemPress={operations.handlePlaceItemPress}
       />
+      {models.isRouteVisible ? <ChooseRideBottomSheet /> : null}
     </Container>
   );
 };
