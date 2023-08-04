@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StyledPressable, Container, Square } from "./MapSearchBar.style";
 import CustomTxt from "../common/CustomTxt/CustomTxt";
+import { FadeInDown } from "react-native-reanimated";
 
 interface MapSearchBarProps {
   onPress: () => void;
@@ -11,7 +12,7 @@ interface MapSearchBarProps {
 export const MapSearchBar = ({ onPress }: MapSearchBarProps) => {
   const inset = useSafeAreaInsets();
   return (
-    <Container inset={inset}>
+    <Container entering={FadeInDown} inset={inset}>
       <StyledPressable onPress={onPress}>
         <Square>
           <Ionicons name="ios-location" size={15} color="black" />

@@ -47,7 +47,7 @@ const MapScreen = () => {
         }
         onPress={operations.handleRoundBtnPress}
       />
-      {models.isRouteVisible ? null : (
+      {models.isRouteVisible || models.modalVisible ? null : (
         <MapSearchBar onPress={operations.handleMapSearchBarPress} />
       )}
       <DestinationModal

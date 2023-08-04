@@ -31,10 +31,6 @@ const DestinationModal = ({
   const insets = useSafeAreaInsets();
   const styles = useStyles(insets);
 
-  // const handleRoundBtnPress = () => {
-  //   closeModal();
-  // };
-
   const renderFlatlistItem = ({ item }: { item: TxtSearchItem }) => {
     return (
       <PlaceItem
