@@ -56,7 +56,9 @@ const MapScreen = () => {
         closeModal={operations.closeDestinationModal}
         onPlaceItemPress={operations.handlePlaceItemPress}
       />
-      {models.isRouteVisible ? <ChooseRideBottomSheet /> : null}
+      {models.isRouteVisible ? (
+        <ChooseRideBottomSheet onChange={operations.handleBottomSheetChange} />
+      ) : null}
     </Container>
   );
 };

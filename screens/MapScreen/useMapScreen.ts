@@ -1,3 +1,4 @@
+import { mapRideSheetMapPadding } from "@/constants/BottomSheetSnapPoints";
 import { useUserLocationStateContext } from "@/context/userLocationStateContext";
 import { useState, useRef, useEffect, useCallback } from "react";
 import MapView, { LatLng, UserLocationChangeEvent } from "react-native-maps";
@@ -84,6 +85,19 @@ export default function useMapScreen() {
     }
   };
 
+  const handleBottomSheetChange = (index: number) => {
+    if (mapDirection?.coordinates) {
+      mapRef.current?.fitToCoordinates(mapDirection?.coordinates, {
+        edgePadding: {
+          top: inset.top + scale(15),
+          bottom: mapRideSheetMapPadding[index],
+          left: scale(15),
+          right: scale(15),
+        },
+      });
+    }
+  };
+
   return {
     models: {
       mapRef,
@@ -98,6 +112,7 @@ export default function useMapScreen() {
       handlePlaceItemPress,
       handleOnMapDirectionReady,
       handleRoundBtnPress,
+      handleBottomSheetChange,
     },
   };
 }

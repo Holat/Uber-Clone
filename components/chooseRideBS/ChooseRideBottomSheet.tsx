@@ -1,12 +1,15 @@
 import { View, Text } from "react-native";
 import React from "react";
 import BottomSheet, { BottomSheetSectionList } from "@gorhom/bottom-sheet";
+import { rideSheetSnapPoints } from "@/constants/BottomSheetSnapPoints";
 
-export const snapPoints = ["20%", "50%", "90%"];
+interface ChooseRideBottomSheetProps {
+  onChange: (index: number) => void;
+}
 
-const ChooseRideBottomSheet = () => {
+const ChooseRideBottomSheet = ({ onChange }: ChooseRideBottomSheetProps) => {
   return (
-    <BottomSheet snapPoints={snapPoints}>
+    <BottomSheet index={1} onChange={onChange} snapPoints={rideSheetSnapPoints}>
       <BottomSheetSectionList sections={[]} />
     </BottomSheet>
   );
