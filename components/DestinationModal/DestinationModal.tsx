@@ -51,6 +51,7 @@ const DestinationModal = ({
     //onRequestClose - allow the modal to close when andriod navigation back arrow is pressed
     <Modal
       onRequestClose={closeModal}
+      onDismiss={operation.handleModalDismiss}
       visible={visible}
       animationType={"fade"}
       statusBarTranslucent={true}
@@ -65,7 +66,7 @@ const DestinationModal = ({
         ItemSeparatorComponent={ItemSeparatorComponent}
         contentContainerStyle={styles.flatlistContainer}
         keyboardShouldPersistTaps={"always"}
-        keyboardDismissMode={"interactive"}
+        keyboardDismissMode={"on-drag"}
         stickyHeaderIndices={[0]}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={

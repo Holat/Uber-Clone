@@ -17,11 +17,11 @@ export const useDestinationModal = ({
   const [destinationInputValue, setDestinationInputValue] = useState("");
 
   /**
-   * sets the destinationInputValue every 500 sec to prevent multiple api fetches
+   * sets the destinationInputValue every 200 millisec to prevent multiple api fetches
    */
   const [debouncedDestinationInputValue] = useDebounce(
     destinationInputValue,
-    300
+    200
   );
 
   const { searchHistoryItem, addItemToSearchHistory } = useSearchHistory(
@@ -47,8 +47,12 @@ export const useDestinationModal = ({
 
   const handleRoundBtnPress = () => {
     closeModal();
+  };
+
+  const handleModalDismiss = () => {
     setDestinationInputValue("");
   };
+
   return {
     modals: {
       destinationInputValue,
@@ -58,6 +62,7 @@ export const useDestinationModal = ({
       destinationInputValueChange,
       handlePlaceItemPress,
       handleRoundBtnPress,
+      handleModalDismiss,
     },
   };
 };
