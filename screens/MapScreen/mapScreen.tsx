@@ -53,7 +53,7 @@ const MapScreen = () => {
       <DestinationModal
         visible={models.modalVisible}
         closeModal={operations.closeDestinationModal}
-        onPress={operations.handlePlaceItemPress}
+        onPlaceItemPress={operations.handlePlaceItemPress}
       />
     </Container>
   );

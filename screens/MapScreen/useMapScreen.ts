@@ -71,12 +71,10 @@ export default function useMapScreen() {
   };
 
   const handlePlaceItemPress = (cords: LatLng) => {
-    return () => {
-      if (userLocation?.cords) {
-        setMapMarkers([userLocation?.cords, cords]);
-        setModalVisible(false);
-      }
-    };
+    if (userLocation?.cords) {
+      setMapMarkers([userLocation?.cords, cords]);
+      setModalVisible(false);
+    }
   };
 
   const handleRoundBtnPress = () => {

@@ -1,8 +1,8 @@
-import { getItemFromStorage } from "@/utils/Storage";
+import { getItemFromStorage, saveItemToStorage } from "@/utils/Storage";
 import React, { useState, useEffect } from "react";
 
-export const useSearchHistory = (key: string) => {
-  const [searchHistoyItem, setSearchHistoryItem] = useState<any[]>();
+export const useSearchHistory = (key: string, idKey: string) => {
+  const [searchHistoryItem, setSearchHistoryItem] = useState<any[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -13,7 +13,18 @@ export const useSearchHistory = (key: string) => {
         setSearchHistoryItem(previousSearches);
       }
     })();
-
-    const addItemToSearchHistory = (item: any) => {};
   }, [key]);
+
+  const addItemToSearchHistory = (item: any) => {
+    const filteredData = searchHistoryItem?.filter((searchItem) => {
+      return searchItem[idKey] !== item[idKey];
+    });
+    setSearchHistoryItem([item, ...filteredData]);
+    saveItemToStorage("places", JSON.stringify([item, ...filteredData]));
+  };
+
+  return {
+    searchHistoryItem,
+    addItemToSearchHistory,
+  };
 };
