@@ -18,19 +18,6 @@ export default function useMapScreen() {
   const inset = useSafeAreaInsets();
   const isRouteVisible = mapMarkers.length === 2;
 
-  useEffect(() => {
-    if (mapDirection?.coordinates) {
-      mapRef.current?.fitToCoordinates(mapDirection?.coordinates, {
-        edgePadding: {
-          top: inset.top + scale(15),
-          bottom: scale(15),
-          left: scale(15),
-          right: scale(15),
-        },
-      });
-    }
-  });
-
   const centerToUserLocation = useCallback(() => {
     if (userLocation) {
       mapRef.current?.animateToRegion({
