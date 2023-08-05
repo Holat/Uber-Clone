@@ -9,7 +9,7 @@ interface ChooseRideBottomSheetProps {
 
 const ChooseRideBottomSheet = ({ onChange }: ChooseRideBottomSheetProps) => {
   return (
-    <BottomSheet index={1} onChange={onChange} snapPoints={rideSheetSnapPoints}>
+    <BottomSheet index={0} onChange={onChange} snapPoints={rideSheetSnapPoints}>
       <BottomSheetSectionList sections={[]} />
     </BottomSheet>
   );
