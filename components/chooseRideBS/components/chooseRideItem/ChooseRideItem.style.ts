@@ -9,10 +9,10 @@ export const StyledPressable = styled.Pressable<StyledPressableProp>(
   ({ theme, selected }) => {
     return {
       flexDirection: "row",
-      borderBlockColor: selected
+      borderColor: selected
         ? theme.colors.components.chooseRideItem.selectedBorderColor
         : theme.colors.components.chooseRideItem.borderColor,
-      borderWidth: scale(1),
+      borderWidth: scale(2),
       height: scale(85),
       alignItems: "center",
       borderRadius: scale(15),
@@ -26,4 +26,19 @@ export const StyledPressable = styled.Pressable<StyledPressableProp>(
 export const CarImage = styled.Image({
   width: scale(80),
   resizeMode: "contain",
+});
+
+export const TextContainer = styled.View({
+  flexDirection: "row",
+  flexShrink: 1,
+});
+
+export const Container = styled.View({
+  flex: 1,
+});
+
+export const IconContainer = styled.View({
+  flexDirection: "row",
+  flexShrink: 1,
+  alignItems: "center",
 });

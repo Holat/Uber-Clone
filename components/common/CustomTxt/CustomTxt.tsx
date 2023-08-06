@@ -1,8 +1,8 @@
 import React from "react";
-import { BodyTxt, CaptionTxt, TitleTxt } from "./CustomTxt.style";
+import { BodyTxt, CaptionTxt, HeaderTxt, TitleTxt } from "./CustomTxt.style";
 
 interface CustomTxtProp {
-  variant: "body" | "title" | "caption";
+  variant: "body" | "title" | "caption" | "header";
   children: string;
 }
 const getComponent = (variant: CustomTxtProp["variant"]) => {
@@ -13,6 +13,8 @@ const getComponent = (variant: CustomTxtProp["variant"]) => {
       return TitleTxt;
     case "caption":
       return CaptionTxt;
+    case "header":
+      return HeaderTxt;
     default:
       return BodyTxt;
   }
