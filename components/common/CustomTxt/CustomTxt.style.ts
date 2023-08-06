@@ -22,3 +22,11 @@ export const CaptionTxt = styled.Text(({ theme }) => {
     color: theme.colors.typography.body,
   };
 });
+
+export const HeaderTxt = styled.Text(({ theme }) => {
+  return {
+    fontSize: scale(17),
+    color: theme.colors.typography.common,
+    fontWeight: "500",
+  };
+});
