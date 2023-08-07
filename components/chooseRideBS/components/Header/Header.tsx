@@ -9,7 +9,7 @@ import Divider from "@/components/Divider/Divider";
 const Header = () => {
   return (
     <Container>
-      <CustomTxt variant="header">Choose your ride</CustomTxt>
+      <CustomTxt variant="header">Choose Your Ride</CustomTxt>
       <Spacer height={scale(15)} />
       <Divider />
     </Container>
