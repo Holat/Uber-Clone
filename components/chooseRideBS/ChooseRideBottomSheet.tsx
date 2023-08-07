@@ -11,6 +11,8 @@ import { calculateRidePrice } from "@/utils/CalculatorRIdePrice";
 import { useChooseRideBS } from "./useChooseRideBS";
 import { Header } from "./components/Header";
 import { SectionHeader } from "./components/SectionHeader";
+import { Footer } from "./components/Footer";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface ChooseRideBottomSheetProps {
   onChange: (index: number) => void;
@@ -21,21 +23,23 @@ const ChooseRideBottomSheet = ({
   onChange,
   mapDirections,
 }: ChooseRideBottomSheetProps) => {
+  const insets = useSafeAreaInsets();
   const { models, operations } = useChooseRideBS({ onChange });
-  const isBottomSheet = models.snapIndex === 2;
   const renderSectionHeader = ({
     section,
   }: {
     section: SectionListData<RideItem>;
   }) => {
-    return isBottomSheet ? <SectionHeader title={section.title} /> : null;
+    return models.isBottomSheetExtended ? (
+      <SectionHeader title={section.title} />
+    ) : null;
   };
 
   const renderSectionItem: SectionListRenderItem<RideItem> = ({ item }) => {
     return (
       <ChooseRideItem
         key={item.id}
-        variant={isBottomSheet ? "expanded" : "compact"}
+        variant={models.isBottomSheetExtended ? "expanded" : "compact"}
         onPress={operations.handleRideItemPress(item)}
         title={item.type}
         price={calculateRidePrice(item.price, mapDirections)}
@@ -48,19 +52,23 @@ const ChooseRideBottomSheet = ({
   };
 
   return (
-    <BottomSheet
-      index={1}
-      onChange={operations.handleRideButtomSheetChange}
-      snapPoints={rideSheetSnapPoints}
-    >
-      <BottomSheetSectionList
-        ListHeaderComponent={<Header />}
-        sections={ridesData}
-        renderItem={renderSectionItem}
-        renderSectionHeader={renderSectionHeader}
-        stickySectionHeadersEnabled={false}
-      />
-    </BottomSheet>
+    <>
+      <BottomSheet
+        index={1}
+        onChange={operations.handleRideButtomSheetChange}
+        snapPoints={rideSheetSnapPoints(insets)}
+        style={{ zIndex: 20 }}
+      >
+        <BottomSheetSectionList
+          ListHeaderComponent={<Header />}
+          sections={ridesData}
+          renderItem={renderSectionItem}
+          renderSectionHeader={renderSectionHeader}
+          stickySectionHeadersEnabled={false}
+        />
+      </BottomSheet>
+      <Footer selectedRide={models.selectedRide} offset={models.footerOffset} />
+    </>
   );
 };
 

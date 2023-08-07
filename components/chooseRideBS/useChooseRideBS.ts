@@ -1,6 +1,8 @@
 import type { RideItem } from "@/types/rideItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ridesData } from "./mockData";
+import { useSharedValue } from "react-native-reanimated";
+import { scale } from "react-native-size-matters";
 
 interface UseChooseRideBSProp {
   onChange: (index: number) => void;
@@ -12,6 +14,16 @@ export const useChooseRideBS = ({ onChange }: UseChooseRideBSProp) => {
   );
 
   const [snapIndex, setSnapIndex] = useState(1);
+  const footerOffset = useSharedValue(0);
+  const isBottomSheetExtended = snapIndex === 2;
+
+  useEffect(() => {
+    if (isBottomSheetExtended) {
+      footerOffset.value = scale(200);
+    } else {
+      footerOffset.value = 0;
+    }
+  }, [isBottomSheetExtended, footerOffset]);
 
   const handleRideItemPress = (item: RideItem) => {
     return () => {
@@ -25,7 +37,7 @@ export const useChooseRideBS = ({ onChange }: UseChooseRideBSProp) => {
   };
 
   return {
-    models: { selectedRide, snapIndex },
+    models: { selectedRide, snapIndex, isBottomSheetExtended, footerOffset },
     operations: { handleRideItemPress, handleRideButtomSheetChange },
   };
 };

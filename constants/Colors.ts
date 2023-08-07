@@ -45,6 +45,17 @@ export const colors = {
       selectedBorderColor: pallete.black,
       borderColor: pallete.white,
     },
+
+    rideBottomSheet: {
+      footerRightIconBg: pallete.lighterGray,
+      footerLeftIconBg: pallete.black,
+      leftIconColor: pallete.white,
+    },
+
+    actionBtn: {
+      bgColor: pallete.black,
+      fontColor: pallete.white,
+    },
   },
   screens: {
     mapScrn: {

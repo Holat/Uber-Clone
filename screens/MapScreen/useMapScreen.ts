@@ -91,6 +91,7 @@ export default function useMapScreen() {
       modalVisible,
       mapMarkers,
       isRouteVisible,
+      mapDirection,
     },
     operations: {
       handleUserLocationChange,

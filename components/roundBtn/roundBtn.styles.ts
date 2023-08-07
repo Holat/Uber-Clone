@@ -19,7 +19,7 @@ export const StyledPressable = styled.Pressable<StyledPressableProps>(
       ...theme.shadows.primary(theme),
       alignItems: "center",
       justifyContent: "center",
-      zIndex: 100,
+      zIndex: 10,
     };
   }
 );
