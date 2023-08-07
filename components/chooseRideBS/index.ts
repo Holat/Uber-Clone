@@ -1,1 +1,3 @@
-export * from "./ChooseRideBottomSheet";
+import ChooseRideBottomSheet from "./ChooseRideBottomSheet";
+
+export { ChooseRideBottomSheet };

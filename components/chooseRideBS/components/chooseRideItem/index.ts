@@ -1,1 +1,3 @@
-export * from "./ChooseRideItem";
+import ChooseRideItem from "./ChooseRideItem";
+
+export { ChooseRideItem };
